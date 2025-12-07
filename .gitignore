@@ -1,0 +1,28 @@
+# General Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
+
+# Streamlit specific
+.streamlit/
+
+# Large Datasets (We keep the 'assets' folder, but ignore raw training data if you add it later)
+dancetrack_val_local/
+runs/
+weights/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
