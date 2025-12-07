@@ -14,11 +14,6 @@ It highlights the **Dark/Glassmorphism UI**, the **Interactive Analytics**, and 
 ````markdown
 # 🧬 Robust Multi-Object Tracking Under Heavy Occlusion
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![Framework](https://img.shields.io/badge/Framework-Streamlit%20%7C%20YOLOv8-orange)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-B.Sc._Thesis-purple)
-
 > **Official Research Dashboard & Implementation**
 >
 > *A Comparative Analysis of Observation-Centric vs. Appearance-Based Methods (DeepOCSORT, StrongSORT, ByteTrack) on the DanceTrack benchmark.*
