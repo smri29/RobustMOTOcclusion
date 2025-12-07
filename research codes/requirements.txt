@@ -1,0 +1,17 @@
+# Research Engine
+numpy<2.0.0
+pandas
+matplotlib
+seaborn
+opencv-python
+scipy
+tqdm
+
+# Tracking & AI
+ultralytics
+boxmot==10.0.43
+lapx>=0.5.5
+ftfy
+regex
+torch
+torchvision
