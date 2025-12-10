@@ -28,7 +28,7 @@ This project benchmarks three state-of-the-art trackers on the **DanceTrack** da
 ## 🎥 Live Research Dashboard
 We have developed a high-performance **interactive dashboard** to visualize the benchmarking results. It features a **Dark Glassmorphism UI**, interactive Radar Charts, and side-by-side video comparisons.
 
-### **[👉 Click Here to Launch the Live App](https://your-app-url.streamlit.app)**
+### **[👉 Click Here to Launch the Live App](https://robustmot.streamlit.app/)**
 
 **Dashboard Features:**
 * **Visual Lab:** Compare trackers on 10 different challenging scenarios (Occlusion, Spinning, Crossing).
