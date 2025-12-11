@@ -3,41 +3,88 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
+from PIL import Image
 
-# --- PAGE CONFIGURATION ---
+# --- PAGE CONFIGURATION (Must be first) ---
 st.set_page_config(
-    page_title="RobustMOT Research Dashboard",
+    page_title="RobustMOT Thesis Dashboard",
     page_icon="👁️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# --- 1. DATA ASSETS & CONFIGURATION ---
-
-# Path to your assets (User specified v2.0)
+# --- CONFIGURATION & ASSETS ---
+# Base path for assets (Relative to where app.py is running)
 ASSET_DIR = os.path.join("assets", "v2.0")
 
 # VIDEO DATABASE
 VIDEO_DB = {
     "DanceTrack (Non-Linear Motion)": {
-        "Seq 04: Heavy Occlusion": "https://youtu.be/fbwpWQks8og",
-        "Seq 05: Group Dance": "https://youtu.be/NjSU4-6AnXQ",
-        "Seq 07: Fast Crossing": "https://youtu.be/Fmc3r1Mnjeg",
-        "Seq 10: Complex Motion": "https://youtu.be/GunfFmJSfB8",
-        "Seq 14: Crowded Scene": "https://youtu.be/Z4uAx9QNM04",
-        "Seq 18: Rapid Spins": "https://youtu.be/hjm8tu4CinU",
-        "Seq 19: Low Light": "https://youtu.be/qYb4CQRJr9A",
-        "Seq 25: Dynamic Camera": "https://youtu.be/n6S9skG41D0",
-        "Seq 26: Extreme Close-up": "https://youtu.be/_utXxgsg0hk",
-        "Seq 30: Formation Change": "https://youtu.be/0b2ER6DSTCI"
+        "ByteTrack": {
+            "Seq 04: Heavy Occlusion": "https://youtu.be/fbwpWQks8og", # Assuming this one is correct based on prev context, or replace if specific byte link exists
+            "ByteTrack Playlist 1": "https://youtu.be/kjJemGMhZoE",
+            "ByteTrack Playlist 2": "https://youtu.be/vULe68-KiKU",
+            "ByteTrack Playlist 3": "https://youtu.be/PMH7_GYXMhA",
+            "ByteTrack Playlist 4": "https://youtu.be/CCMz_C4B2Yc",
+            "ByteTrack Playlist 5": "https://youtu.be/zAaNYtqc7h0"
+        },
+        "DeepOCSORT": {
+             "DeepTrack Playlist 1": "https://youtu.be/PZUw_-a-xYw",
+             "DeepTrack Playlist 2": "https://youtu.be/hI_33oCsFFQ",
+             "DeepTrack Playlist 3": "https://youtu.be/QYORhr6mR58",
+             "DeepTrack Playlist 4": "https://youtu.be/qTP5WZbMUXQ",
+             "DeepTrack Playlist 5": "https://youtu.be/hpxe59Pax9s"
+        },
+        "StrongSORT": {
+             "StrongSORT Playlist 1": "https://youtu.be/_R5aXEy_gsw",
+             "StrongSORT Playlist 2": "https://youtu.be/urKx9npTrqI",
+             "StrongSORT Playlist 3": "https://youtu.be/9zgvI5MX7M4",
+             "StrongSORT Playlist 4": "https://youtu.be/GaDQKKdsRBU",
+             "StrongSORT Playlist 5": "https://youtu.be/D4PZo9tzEaY"
+        }
     },
     "MOT17 (Street Scenes)": {
-        "MOT17-04 (Night Street)": "https://youtu.be/placeholder", 
-        "MOT17-13 (Intersection)": "https://youtu.be/placeholder"
+        "ByteTrack": {
+             "ByteTrack Playlist 1": "https://youtu.be/dyebzXCk6U4",
+             "ByteTrack Playlist 2": "https://youtu.be/g5vKq6HDorY",
+             "ByteTrack Playlist 3": "https://youtu.be/J4qWY9tCcAM",
+             "ByteTrack Playlist 4": "https://youtu.be/WC9uqvzXv0M",
+             "ByteTrack Playlist 5": "https://youtu.be/zH8p6OQDzuM"
+        },
+        "DeepOCSORT": {
+             "DeepOCSORT Playlist 1": "https://youtu.be/hdYlkSdGUDg",
+             "DeepOCSORT Playlist 2": "https://youtu.be/atDdNtv7sIM",
+             "DeepOCSORT Playlist 3": "https://youtu.be/uU4D2QhBjAM",
+             "DeepOCSORT Playlist 4": "https://youtu.be/Tbi0PGN1bOE",
+             "DeepOCSORT Playlist 5": "https://youtu.be/PdCet9NbLFw"
+        },
+        "StrongSORT": {
+             "StrongSORT Playlist 1": "https://youtu.be/jUyDMUkPp2k",
+             "StrongSORT Playlist 2": "https://youtu.be/8EKhf1kfN7k",
+             "StrongSORT Playlist 3": "https://youtu.be/KbRQu5KwH64",
+             "StrongSORT Playlist 4": "https://youtu.be/W364cn6km7I",
+             "StrongSORT Playlist 5": "https://youtu.be/LK-VOa5VuGo"
+        }
     },
     "MOT20 (Extreme Crowds)": {
-        "MOT20-02 (Indoor Crowd)": "https://youtu.be/placeholder",
-        "MOT20-05 (Outdoor Crowd)": "https://youtu.be/placeholder"
+        "ByteTrack": {
+             "ByteTrack Playlist 1": "https://youtu.be/-GBZP34VVMY",
+             "ByteTrack Playlist 2": "https://youtu.be/g6nvFKrjRFE",
+             "ByteTrack Playlist 3": "https://youtu.be/TqWX5Gglce4",
+             "ByteTrack Playlist 4": "https://youtu.be/wkA2Bdo--Yw"
+        },
+        "DeepOCSORT": {
+             "DeepOCSORT Playlist 1": "https://youtu.be/OHON2YiXwnM",
+             "DeepOCSORT Playlist 2": "https://youtu.be/BVMIBzfWCGo",
+             "DeepOCSORT Playlist 3": "https://youtu.be/NuZEmdG2e0w",
+             "DeepOCSORT Playlist 4": "https://youtu.be/s3wQ0gUr0Hc"
+        },
+        "StrongSORT": {
+             "StrongSORT Playlist 1": "https://youtu.be/CK7eRYm4qkw",
+             "StrongSORT Playlist 2": "https://youtu.be/xVDLKGd5wL4",
+             "StrongSORT Playlist 3": "https://youtu.be/-O3vqBjKhEM",
+             "StrongSORT Playlist 4": "https://youtu.be/45uF8YhjgH8"
+        }
     }
 }
 
@@ -259,32 +306,32 @@ elif nav == "2. Methodology":
 # PAGE 3: VISUAL ANALYSIS
 elif nav == "3. Visual Analysis":
     st.markdown("## 🎥 Visual Qualitative Analysis")
-    st.write("Explore how the trackers perform on the DanceTrack dataset.")
+    st.write("Explore how the trackers perform across different datasets.")
+
+    # Select Dataset
+    dataset_choice = st.selectbox("Select Dataset:", list(VIDEO_DB.keys()))
     
-    # 1. Controls
-    c1, c2 = st.columns([1, 2])
-    with c1:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        dataset_choice = st.selectbox("Select Dataset:", list(VIDEO_DB.keys()))
-        video_choice = st.selectbox("Select Sequence:", list(VIDEO_DB[dataset_choice].keys()))
-        
-        st.markdown("---")
-        st.markdown("**🔍 Analysis Guide**")
-        st.markdown("""
-        * **DeepOCSORT (Left):** Look for stability during fast spins.
-        * **StrongSORT (Center):** Look for ID retention after long occlusion.
-        * **ByteTrack (Right):** Watch for ID swaps in crowds.
-        """)
-        st.markdown('</div>', unsafe_allow_html=True)
-        
-    with c2:
-        video_url = VIDEO_DB[dataset_choice][video_choice]
+    # Select Tracker
+    tracker_choice = st.selectbox("Select Tracker:", list(VIDEO_DB[dataset_choice].keys()))
+
+    # Select Video
+    video_choice = st.selectbox("Select Sequence:", list(VIDEO_DB[dataset_choice][tracker_choice].keys()))
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        video_url = VIDEO_DB[dataset_choice][tracker_choice][video_choice]
         if "placeholder" in video_url:
-            st.warning("⚠️ Video pending upload. Showing DanceTrack example instead.")
-            st.video("https://youtu.be/NjSU4-6AnXQ") # Fallback
+             st.warning("Video not available yet.")
         else:
-            st.video(video_url)
-            st.caption(f"{video_choice} | Left: DeepOCSORT | Center: StrongSORT | Right: ByteTrack")
+             st.video(video_url)
+             st.caption(f"{video_choice} | Tracker: {tracker_choice}")
+
+    with col2:
+        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        st.markdown("### 🔍 Analysis")
+        st.write("Observe the tracking consistency and identity retention.")
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # PAGE 4: BENCHMARKS
 elif nav == "4. Benchmarks (3 Datasets)":
